@@ -12,13 +12,18 @@ export function d6(): number {
 }
 
 export function TwoDice(): React.JSX.Element {
-    // Initialize dice with different values
-    let initialDie1 = d6();
-    let initialDie2 = d6();
-    while (initialDie1 === initialDie2) {
-        initialDie2 = d6(); // Ensure different initial values
+    // Generate two different dice values without a loop or recursion
+    function getTwoDifferentDice(): [number, number] {
+        const die1 = d6();
+        let die2 = d6();
+        // Ensure die2 is not the same as die1
+        while (die1 === die2) {
+            die2 = d6();
+        }
+        return [die1, die2];
     }
 
+    const [initialDie1, initialDie2] = getTwoDifferentDice();
     const [die1, setDie1] = useState<number>(initialDie1);
     const [die2, setDie2] = useState<number>(initialDie2);
 
