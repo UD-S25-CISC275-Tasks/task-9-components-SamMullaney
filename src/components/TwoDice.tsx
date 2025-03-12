@@ -11,17 +11,11 @@ function d6(): number {
  * to produce a random integer between 1 and 6 (inclusive).
  */
 
-function getDifferentDieValue(currentValue: number): number {
-    const newValue = d6();
-    return newValue === currentValue
-        ? getDifferentDieValue(currentValue)
-        : newValue;
-}
-
 export function TwoDice(): React.JSX.Element {
     // Initialize dice with different values
     const initialDie1 = d6();
-    const initialDie2 = ((initialDie1 + 1) % 6) + 1;
+    const initialDie2 =
+        initialDie1 === 1 ? 2 : Math.floor(Math.random() * 5) + 1;
 
     const [die1, setDie1] = useState<number>(initialDie1);
     const [die2, setDie2] = useState<number>(initialDie2);
